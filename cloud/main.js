@@ -1,7 +1,7 @@
-Parse.Cloud.define("new", function (request, response) {
+﻿Parse.Cloud.define("new", function (request, response) {
     Parse.Cloud.useMasterKey();
 
-    //requset lay link mp3
+    //requset lay link mp3 hello
     Parse.Cloud.httpRequest({
         url: 'http://www.oxfordlearnersdictionaries.com/search/english/direct/?q=' + encodeURIComponent(request.params.Voca),
         followRedirects: true,
