@@ -1,5 +1,5 @@
 ﻿Parse.Cloud.define("new", function (request, response) {
-    Parse.Cloud.useMasterKey();;;
+    Parse.Cloud.useMasterKey();
 
     //requset lay link mp3 hello
     Parse.Cloud.httpRequest({
