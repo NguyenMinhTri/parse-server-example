@@ -1,7 +1,11 @@
-﻿Parse.Cloud.define("new", function (request, response) {
+﻿// Use Parse.Cloud.define to define as many cloud functions as you want.
+// For example:
+
+
+Parse.Cloud.define("new", function (request, response) {
     Parse.Cloud.useMasterKey();
 
-    //requset lay link mp3 hello
+    //requset lay link mp3
     Parse.Cloud.httpRequest({
         url: 'http://www.oxfordlearnersdictionaries.com/search/english/direct/?q=' + encodeURIComponent(request.params.Voca),
         followRedirects: true,
@@ -95,7 +99,7 @@
         //end
     });
 });
-//-- t?o database
+//-- tạo database
 
 
 Parse.Cloud.define("ListMp3", function (request, response) {
@@ -414,11 +418,11 @@ Parse.Cloud.define("getPage", function (request, response) {
             html = html.replace(html2, "");
         }
      
-        //x? ly theo chuyên ngành
+        //xử lý theo chuyên ngành
         if (voca.split("#")[1] == "TT")
         {
             index = html.indexOf("class='fb' >Tin");
-            if(index!=-1)// có t?n t?i toán tin
+            if(index!=-1)// có tồn tại toán tin
             {
                 html = html.substring(index + 12)
                 index2 = html.indexOf("<span class='fb'");
@@ -428,7 +432,7 @@ Parse.Cloud.define("getPage", function (request, response) {
             else
             {
                 index = html.indexOf("class='fb' >To");
-                if(index!=-1)// có t?n t?i toán
+                if(index!=-1)// có tồn tại toán
                 {
                     html = html.substring(index + 12)
                     index2 = html.indexOf("<span class='fb'");
@@ -438,7 +442,7 @@ Parse.Cloud.define("getPage", function (request, response) {
                 else
                 {
                     index = html.indexOf("class='fb' >V");
-                    if (index != -1)// có t?n t?i v?t ly
+                    if (index != -1)// có tồn tại vật lý
                     {
                         html = html.substring(index + 12)
                         index2 = html.indexOf("<span class='fb'");
@@ -447,7 +451,7 @@ Parse.Cloud.define("getPage", function (request, response) {
                     }
                     else {
                         index = html.indexOf("class='fb' >K");
-                        if (index != -1)// có t?n t?i ky thu?t
+                        if (index != -1)// có tồn tại ky thuật
                         {
                             html = html.substring(index + 12)
                             index2 = html.indexOf("<span class='fb'");
@@ -471,7 +475,7 @@ Parse.Cloud.define("getPage", function (request, response) {
         }
         if(html!="")
         html = html + "<span class='fb'";
-        response.success(html+"TRI UIT");
+        response.success(html);
     }, function (httpResponse) {
         // error
         response.error('Request failed with response code ' + httpResponse.headers);
