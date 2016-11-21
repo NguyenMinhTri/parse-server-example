@@ -12,11 +12,11 @@ if (!databaseUri) {
 }
 
 var api = new ParseServer({
-  databaseURI: databaseUri || 'mongodb://heroku_96vm17hs:pi911aev15tvv6tuhke5s61o5d@ds049651.mlab.com:49651/heroku_96vm17hs',
+  databaseURI: databaseUri || 'mongodb://heroku_3vjp7dc7:neevt0vqg10l6fat6ljhkva2lq@ds057066.mlab.com:57066/heroku_3vjp7dc7',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID || 'mynewAPPID',
-  masterKey: process.env.MASTER_KEY || 'myNewMasterKey', //Add your master key here. Keep it secret!
-  serverURL: process.env.SERVER_URL || 'https://parseserveruit.herokuapp.com/parse/',  // Don't forget to change to https if needed
+  appId: process.env.APP_ID || 'myAppId',
+  masterKey: process.env.MASTER_KEY || 'myMasterKey', //Add your master key here. Keep it secret!
+  serverURL: process.env.SERVER_URL || 'http://dictplus.herokuapp.com/parse',  // Don't forget to change to https if needed
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   }
