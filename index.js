@@ -19,8 +19,8 @@ var api = new ParseServer({
   serverURL: process.env.SERVER_URL || 'http://dictplus.herokuapp.com/parse',  // Don't forget to change to https if needed
    push: {
       android: {
-        senderId: '846962511802',
-        apiKey: 'AIzaSyD7PEdKYAKnv51HO_0mS7zuPb-dWW3lJ9c'
+        senderId: 'dictplus-63839',
+        apiKey: 'AIzaSyCfxMYIArAi3fQM4qYGjezAzPu-AQyPbn8'
       }
   },
   liveQuery: {
