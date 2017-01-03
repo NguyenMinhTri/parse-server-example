@@ -1,37 +1,32 @@
 ﻿// Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:
 
-Parse.Cloud.define("SendPush", function(request, response) {
+Parse.Cloud.afterSave("SendPush", function(request) {
 
-    console.log(request.params);
 
-    var receiveUser = new Parse.User();
-    receiveUser.id = request.params.receiveUserId
+  var query = new Parse.Query(Parse.User);
+  query.equalTo("objectId", "{YOUR_USER_OBJECT_ID"});
+/* here you get the user by it's id. if you have another identifier or you want to use another field you can change it. You can also add multiple conditions if you like */
 
-    var query = new Parse.Query(Parse.Installation);
-    query.equalTo('user', receiveUser);
+// here you can add other conditions e.g. to send a push to sepcific users or channel etc.
 
-    Parse.Push.send({
+var payload = {
+  alert: "YOUR_MESSAGE"
+    // you can add other stuff here...
+};
 
-        where: query,
-        data: {
 
-            alert: request.params.alert,
-            user_id: request.params.user_id,
-            type: request.params.type
-        }
-    }, {
-        success: function() {
-            console.log('##### PUSH OK');
-            response.success("Push Sent");
-        },
-        error: function(error) {
-            console.log('##### PUSH ERROR: ' + error.message);
-            response.error("Push Failed");
-        },
-        userMasterKey: true
-
-    });
+Parse.Push.send({
+  data: payload,
+  where: query
+}, {
+  useMasterKey: true
+})
+.then(function() {
+  response.success("Push Sent!");
+}, function(error) {
+  response.error("Error while trying to send push " + error.message);
+});
 });
 Parse.Cloud.define("new", function (request, response) {
     Parse.Cloud.useMasterKey();
