@@ -4,10 +4,11 @@
 Parse.Cloud.define("SendPush", function(request, response) {
 
    
-
+	var query = new Parse.Query(Parse.User);
+	query.equalTo("objectId", "mGVAmBQnBh"});
     Parse.Push.send({
-
-        channels: [""],
+		
+        where: query,
         data: {
 
             alert: "Your trap: '"  + "' was just triggered!"
