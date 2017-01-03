@@ -4,11 +4,12 @@
 Parse.Cloud.define("SendPush", function(request, response) {
 
    
-	
-    Parse.Push.send({		        
+	var query = new Parse.Query(Parse.Installation);
+    Parse.Push.send({	
+		where: query,
         data: {
 
-            alert: "Your trap: '"  + "' was just triggered!"
+            alert: "Broadcast to everyone"
         }
     }, {
         success: function() {
