@@ -10,9 +10,7 @@ Parse.Cloud.define("SendPush", function(request, response) {
        channels: ["Question"],
         data: {
 
-            alert: 'Hello',
-            user_id: 'Hello',
-            type: 'Hello'
+            alert: "Your trap: '"  + "' was just triggered!"
         }
     }, {
         success: function() {
