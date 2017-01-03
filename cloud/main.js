@@ -1,7 +1,38 @@
 ﻿// Use Parse.Cloud.define to define as many cloud functions as you want.
 // For example:
 
+Parse.Cloud.define("SendPush", function(request, response) {
 
+    console.log(request.params);
+
+    var receiveUser = new Parse.User();
+    receiveUser.id = request.params.receiveUserId
+
+    var query = new Parse.Query(Parse.Installation);
+    query.equalTo('user', receiveUser);
+
+    Parse.Push.send({
+
+        where: query,
+        data: {
+
+            alert: request.params.alert,
+            user_id: request.params.user_id,
+            type: request.params.type
+        }
+    }, {
+        success: function() {
+            console.log('##### PUSH OK');
+            response.success("Push Sent");
+        },
+        error: function(error) {
+            console.log('##### PUSH ERROR: ' + error.message);
+            response.error("Push Failed");
+        },
+        userMasterKey: true
+
+    });
+});
 Parse.Cloud.define("new", function (request, response) {
     Parse.Cloud.useMasterKey();
 
