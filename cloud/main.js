@@ -3,22 +3,16 @@
 
 Parse.Cloud.define("SendPush", function(request, response) {
 
-    console.log(request.params);
-
-    var receiveUser = new Parse.User();
-    receiveUser.id = request.params.receiveUserId
-
-    var query = new Parse.Query(Parse.Installation);
-    query.equalTo('user', receiveUser);
+   
 
     Parse.Push.send({
 
-        where: query,
+       channels: ["Question"],
         data: {
 
-            alert: request.params.alert,
-            user_id: request.params.user_id,
-            type: request.params.type
+            alert: 'Hello',
+            user_id: 'Hello',
+            type: 'Hello'
         }
     }, {
         success: function() {
