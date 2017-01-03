@@ -20,6 +20,19 @@ var api = new ParseServer({
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   }
+  push: {
+		android: {
+			senderId: '846962511802', // The Sender ID of GCM
+			apiKey: 'AIzaSyD7PEdKYAKnv51HO_0mS7zuPb-dWW3lJ9c' // The Server API Key of GCM
+		},
+		ios: {
+			pfx: 'certs/mycert.p12', // the path and filename to the .p12 file you exported earlier. 
+			cert: '', // If not using the .p12 format, the path to the certificate PEM to load from disk
+			bundleId: '', // The bundle identifier associated with your app
+			key: '', // If not using the .p12 format, the path to the private key PEM to load from disk
+			production: true // Specifies which environment to connect to: Production (if true) or Sandbox
+		}
+	}
 });
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
